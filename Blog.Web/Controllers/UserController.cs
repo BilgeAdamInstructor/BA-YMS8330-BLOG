@@ -43,5 +43,13 @@ namespace Blog.Web.Controllers
                 return Unauthorized();
             }
         }
+
+        [HttpGet]
+        public IActionResult LogoutAction()
+        {
+            HttpContext.Session.Clear();
+
+            return RedirectToAction("Index", "Home");
+        }
     }
 }
