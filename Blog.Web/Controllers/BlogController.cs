@@ -6,6 +6,7 @@ using Blog.Data.Dto;
 using Blog.Data.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Query.ExpressionTranslators.Internal;
 
 namespace Blog.Web.Controllers
 {
@@ -35,13 +36,19 @@ namespace Blog.Web.Controllers
                 CreateDate = DateTime.UtcNow,
                 Hit = 0,
                 Deleted = false,
-                CategoryId = 0
+                CategoryId = blogAdd.CategoryId
             };
 
             _blogContext.Blogs.Add(blog);
             _blogContext.SaveChanges();
 
             return Ok(blog);
+        }
+
+        public IActionResult Detail(int id)
+        {
+            var blog = _blogContext.Blogs.Find(id);
+            return View(blog);
         }
     }
 }
