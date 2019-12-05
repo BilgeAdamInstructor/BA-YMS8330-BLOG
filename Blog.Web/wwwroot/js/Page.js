@@ -60,37 +60,6 @@
             alert("Validation error!");
         }
     },
-    User: {
-        Login: {
-            LoginButton: function() {
-                var email = $("#Email").val();
-                var password = $("#Password").val();
-
-                var data = {
-                    Email: email,
-                    Password: password
-                };
-                $.ajax({
-                    type: "POST",
-                    url: "/User/LoginAction",
-                    data: JSON.stringify(data),
-                    success: Page.User.Login.LoginButton_Callback,
-                    error: Page.User.Login.LoginButton_Callback_Error,
-                    dataType: "json",
-                    contentType: "application/json"
-                });
-            },
-            LoginButton_Callback: function(result) {
-                console.log(result);
-                window.location.href = "/";
-            },
-            LoginButton_Callback_Error: function (request, status, error) {
-                console.log(error);
-                console.log(status);
-                console.log(request);
-            }
-        }
-    },
     Blog: {
         New: {
             Save: function() {
@@ -129,6 +98,14 @@
             Submit: function() {
                 var email = $("#Email").val();
                 var password = $("#Password").val();
+                
+                if (email.length < 6 || email.length > 345) {
+                    alert("email format hatası");
+                    return;
+                } else if (password.length < 8 || password.length > 32) {
+                    alert("şifre uzunluk hatası");
+                    return;
+                }
 
                 var data = {
                     Email: email,
@@ -145,37 +122,45 @@
                     contentType: "application/json"
                 });
             },
-            Submit_Callback: function(result) {
-                window.location.href = "/Manage/Index";
+            Submit_Callback: function (result) {
+                if (result.id == "0") {
+                    alert("Kullanıcı adı veya şifre hatalı");
+                } else {
+                    window.location.href = "/Manage/Index";
+                }
             },
             Submit_Callback_Error: function(result) {
-                console.log(result);
+                alert("Kullanıcı adı veya şifre hatalı");
             }
         },
-        NewBlog: {
+        ManageBlog: {
             Save: function() {
                 var title = $("#Title").val();
                 var content = $("#Content").val();
                 var categoryId = $("#CategoryId").val();
+                var id = $("#Id").val();
 
                 var data = {
                     Title: title,
                     Content: content,
-                    CategoryId: categoryId
+                    CategoryId: categoryId,
+                    Id: id
                 };
 
                 $.ajax({
                     type: "POST",
-                    url: "/Manage/NewBlogAction",
+                    url: "/Manage/ManageBlogAction",
                     data: JSON.stringify(data),
-                    success: Page.Manage.NewBlog.Save_Callback,
-                    error: Page.Manage.NewBlog.Save_Callback_Error,
+                    success: Page.Manage.ManageBlog.Save_Callback,
+                    error: Page.Manage.ManageBlog.Save_Callback_Error,
                     dataType: "json",
                     contentType: "application/json"
                 });
             },
             Save_Callback: function(result) {
                 console.log(result);
+
+                window.location.href = "/Blog/Detail/" + result.id;
             },
             Save_Callback_Error: function (result) {
                 console.log(result);

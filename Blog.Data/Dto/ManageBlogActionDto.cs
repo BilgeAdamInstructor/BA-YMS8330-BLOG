@@ -2,8 +2,10 @@
 
 namespace Blog.Data.Dto
 {
-    public class ManageNewBlogActionDto
+    public class ManageBlogActionDto
     {
+        public int Id { get; set; }
+
         [Required]
         public int CategoryId { get; set; }
         [Required, MinLength(2), MaxLength(150)]
