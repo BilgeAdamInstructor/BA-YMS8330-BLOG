@@ -5,7 +5,10 @@ namespace Blog.Data.Models
 {
     public class Comment : Entity
     {
+        public int? ParentCommentId { get; set; }
+
         public int BlogId { get; set; }
+
         public Blog Blog { get; set; }
 
         [MinLength(2)]
