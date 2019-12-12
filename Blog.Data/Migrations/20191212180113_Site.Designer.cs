@@ -4,14 +4,16 @@ using Blog.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Blog.Data.Migrations
 {
     [DbContext(typeof(BlogContext))]
-    partial class BlogContextModelSnapshot : ModelSnapshot
+    [Migration("20191212180113_Site")]
+    partial class Site
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -71,8 +73,8 @@ namespace Blog.Data.Migrations
                     b.ToTable("Categories");
 
                     b.HasData(
-                        new { Id = 1, CreateDate = new DateTime(2019, 12, 12, 18, 5, 37, 566, DateTimeKind.Utc), Deleted = false, Description = "...", Name = "Aşk" },
-                        new { Id = 2, CreateDate = new DateTime(2019, 12, 12, 18, 5, 37, 567, DateTimeKind.Utc), Deleted = false, Description = "!!!", Name = "Meşk" }
+                        new { Id = 1, CreateDate = new DateTime(2019, 12, 12, 18, 1, 12, 876, DateTimeKind.Utc), Deleted = false, Description = "...", Name = "Aşk" },
+                        new { Id = 2, CreateDate = new DateTime(2019, 12, 12, 18, 1, 12, 877, DateTimeKind.Utc), Deleted = false, Description = "!!!", Name = "Meşk" }
                     );
                 });
 
@@ -155,7 +157,7 @@ namespace Blog.Data.Migrations
                     b.ToTable("Nationality");
 
                     b.HasData(
-                        new { Id = 1, Code = "tr", CreateDate = new DateTime(2019, 12, 12, 18, 5, 37, 567, DateTimeKind.Utc), Deleted = false, Name = "Türkiye" }
+                        new { Id = 1, Code = "tr", CreateDate = new DateTime(2019, 12, 12, 18, 1, 12, 878, DateTimeKind.Utc), Deleted = false, Name = "Türkiye" }
                     );
                 });
 
@@ -200,10 +202,6 @@ namespace Blog.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Sites");
-
-                    b.HasData(
-                        new { Id = 1, Copyright = "İçerik hırsızlığına hayır.", Description = "Hayatımı bu beyaz sayfalarda icra ediyorum!", Slogan = "Sayfama hoşgeldiniz!!!", Title = "Erçin Dedeoğlu" }
-                    );
                 });
 
             modelBuilder.Entity("Blog.Data.Models.User", b =>
@@ -249,7 +247,7 @@ namespace Blog.Data.Migrations
                     b.ToTable("Users");
 
                     b.HasData(
-                        new { Id = 1, BirthDate = new DateTime(1986, 8, 4, 0, 0, 0, 0, DateTimeKind.Unspecified), CreateDate = new DateTime(2019, 12, 12, 18, 5, 37, 567, DateTimeKind.Utc), Deleted = false, Email = "e.dedeoglu@gmail.com", Gender = 1, Name = "Erçin", NationalityId = 1, Password = "12345678", Surname = "Dedeoğlu", Username = "ercin" }
+                        new { Id = 1, BirthDate = new DateTime(1986, 8, 4, 0, 0, 0, 0, DateTimeKind.Unspecified), CreateDate = new DateTime(2019, 12, 12, 18, 1, 12, 878, DateTimeKind.Utc), Deleted = false, Email = "e.dedeoglu@gmail.com", Gender = 1, Name = "Erçin", NationalityId = 1, Password = "12345678", Surname = "Dedeoğlu", Username = "ercin" }
                     );
                 });
 

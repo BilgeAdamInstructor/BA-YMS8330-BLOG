@@ -130,11 +130,16 @@
                 Post_Callback: function (result) {
                     $("#Comment-Sending").hide();
                     $("#Comment-Sent").show();
+                    window.location.reload();
                 },
                 Post_Callback_Error: function (result) {
                     alert("Bir hata oluştu!");
                     $("#Comment-Sending").hide();
                     $("#Comment-Respond").show();
+                },
+                Reply: function(commentId) {
+                    $("#ParentCommentId").val(commentId);
+                    window.location.href = "#Comment-Respond";
                 }
             }
         }

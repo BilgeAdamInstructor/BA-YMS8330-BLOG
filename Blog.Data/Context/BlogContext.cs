@@ -16,6 +16,7 @@ namespace Blog.Data.Context
         public DbSet<Page> Pages { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Comment> Comments { get; set; }
+        public DbSet<Site> Sites { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -60,6 +61,14 @@ namespace Blog.Data.Context
                 BirthDate = new DateTime(1986, 08, 04),
                 Gender = Gender.Male,
                 NationalityId = 1
+            });
+            modelBuilder.Entity<Site>().HasData(new Site()
+            {
+                Id = 1,
+                Title = "Erçin Dedeoğlu",
+                Description = "Hayatımı bu beyaz sayfalarda icra ediyorum!",
+                Slogan = "Sayfama hoşgeldiniz!!!",
+                Copyright = "İçerik hırsızlığına hayır."
             });
             base.OnModelCreating(modelBuilder);
         }

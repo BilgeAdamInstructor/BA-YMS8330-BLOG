@@ -51,6 +51,9 @@ namespace Blog.Web.Controllers
                 .Include(a => a.User)
                 .Include(a => a.Comments)
                 .SingleOrDefault(a => a.Id == id);
+
+            ViewData["Title"] = blog.Title;
+
             return View(blog);
         }
 
